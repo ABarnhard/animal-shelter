@@ -4,8 +4,7 @@
 var prompt = require('sync-prompt').prompt;
 
 var dogs = [], cats = [], birds = [], people = [];
-var animal;
-var name, age, isGoodDog, isEvil, canTalk;
+var name, age, isGoodDog, isEvil, canTalk, animal;
 
 var person1 = {name:'bob', age:10, pets: []};
 var person2 = {name:'sam', age:5, pets: []};
@@ -71,9 +70,19 @@ while(option !== 'q'){
   var pick = prompt('What is the name of the animal you want? ');
   for(var i = 0; i < adoptArray.length; i++){
     if(pick === adoptArray[i].name){
-      console.log(adoptArray[i]);
+      var newPet = adoptArray[i];
+      var index = i;
+      break;
     }
   }
+
+  console.log('Animal:', newPet);
+
+  adoptArray.splice(index, 1);
+  client.pets.push(newPet);
+
+  console.log('After adoption', client);
+  console.log('Animals', adoptArray);
 
   option = prompt('(b)ob, (s)am, (j)ill, or (q)uit? ');
 }
