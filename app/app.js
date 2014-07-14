@@ -3,9 +3,15 @@
 
 var prompt = require('sync-prompt').prompt;
 
-var dogs = [], cats = [], birds = [];
+var dogs = [], cats = [], birds = [], people = [];
 var animal;
 var name, age, isGoodDog, isEvil, canTalk;
+
+var person1 = {name:'bob', age:10, pets: []};
+var person2 = {name:'sam', age:5, pets: []};
+var person3 = {name:'jill', age:7, pets: []};
+
+people.push(person1, person2, person3);
 
 var option = prompt('(d)og, (c)at, (b)ird, or (q)uit? ');
 while(option !== 'q'){
@@ -36,7 +42,44 @@ while(option !== 'q'){
   option = prompt('(d)og, (c)at, (b)ird, or (q)uit? ');
 }
 
-console.log(dogs);
-console.log(cats);
-console.log(birds);
+option = prompt('\n(b)ob, (s)am, (j)ill, or (q)uit? ');
+while(option !== 'q'){
+  for(var j = 0; j < people.length; j++){
+    if(option === people[j].name[0]){
+      var client = people[j];
+      break;
+    }
+  }
+
+  console.log('Client:', client);
+  var adoptArray;
+  var choice = prompt('What type of pet? (d)og, (c)at, or (b)ird ');
+  switch(choice){
+    case 'd':
+      console.log('Dogs:', dogs);
+      adoptArray = dogs;
+      break;
+    case 'c':
+      console.log('Cats:', cats);
+      adoptArray = cats;
+      break;
+    case 'b':
+      console.log('Birds:', birds);
+      adoptArray = birds;
+  }
+
+  var pick = prompt('What is the name of the animal you want? ');
+  for(var i = 0; i < adoptArray.length; i++){
+    if(pick === adoptArray[i].name){
+      console.log(adoptArray[i]);
+    }
+  }
+
+  option = prompt('(b)ob, (s)am, (j)ill, or (q)uit? ');
+}
+
+console.log('Dogs:', dogs);
+console.log('Cats:', cats);
+console.log('Birds:', birds);
+
 
